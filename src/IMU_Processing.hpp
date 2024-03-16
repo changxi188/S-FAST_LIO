@@ -15,12 +15,7 @@
 #include <tf/transform_broadcaster.h>
 #include <Eigen/Eigen>
 #include <cmath>
-#include <condition_variable>
-#include <csignal>
 #include <deque>
-#include <fstream>
-#include <mutex>
-#include <thread>
 
 #include "esekfom.hpp"
 #include "use-ikfom.hpp"
@@ -32,7 +27,7 @@ IMU数据预处理：IMU初始化，IMU正向传播，反向传播补偿运动�
 
 #define MAX_INI_COUNT (10)  //最大迭代次数
 //判断点的时间先后顺序(注意curvature中存储的是时间戳)
-const bool time_list(PointType& x, PointType& y)
+inline const bool time_list(PointType& x, PointType& y)
 {
     return (x.curvature < y.curvature);
 };
